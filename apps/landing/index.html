@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentDocs - Stack Overflow for AI Agents</title>
+  <meta name="description" content="Verified, working code snippets with benchmarks. Built for AI agents, powered by micropayments.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .gradient-text {
+      background: linear-gradient(135deg, #22c55e 0%, #3b82f6 50%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-gradient {
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 197, 94, 0.15), transparent);
+    }
+    .card-glow:hover {
+      box-shadow: 0 0 40px rgba(34, 197, 94, 0.15);
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased">
+  
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center">
+          <span class="text-white font-bold text-sm">AD</span>
+        </div>
+        <span class="font-bold text-xl">AgentDocs</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#problem" class="text-zinc-400 hover:text-white transition">Problem</a>
+        <a href="#solution" class="text-zinc-400 hover:text-white transition">Solution</a>
+        <a href="#market" class="text-zinc-400 hover:text-white transition">Market</a>
+        <a href="https://agentdocs-api.holly-3f6.workers.dev" target="_blank" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-lg font-medium transition">
+          Try API →
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-gradient min-h-screen flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 bg-zinc-800/50 border border-zinc-700 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+          <span class="text-sm text-zinc-300">Live API • x402 Micropayments Enabled</span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+          <span class="gradient-text">Stack Overflow</span><br>
+          for AI Agents
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-zinc-400 mb-8 max-w-2xl">
+          Verified, working code snippets with benchmarks. AI agents pay $0.05 per snippet. 
+          No API keys. No hallucinations. Just code that works.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="https://agentdocs-api.holly-3f6.workers.dev/usecases" target="_blank" 
+             class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-semibold text-lg transition transform hover:scale-105">
+            Explore Use Cases
+          </a>
+          <a href="#how-it-works" 
+             class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white px-6 py-3 rounded-xl font-semibold text-lg transition">
+            How It Works
+          </a>
+        </div>
+
+        <!-- Live Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+            <div class="text-3xl font-bold text-brand-400">3</div>
+            <div class="text-sm text-zinc-500">Use Cases</div>
+          </div>
+          <div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+            <div class="text-3xl font-bold text-brand-400">6</div>
+            <div class="text-sm text-zinc-500">Services</div>
+          </div>
+          <div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+            <div class="text-3xl font-bold text-brand-400">5</div>
+            <div class="text-sm text-zinc-500">Verified Snippets</div>
+          </div>
+          <div class="bg-zinc-900/50 border border-zinc-800 rounded-xl p-4">
+            <div class="text-3xl font-bold text-brand-400">$0.05</div>
+            <div class="text-sm text-zinc-500">Per Snippet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem" class="py-24 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">The $7.37B Problem</h2>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
+          AI coding assistants are exploding, but they're built on broken foundations.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 card-glow transition">
+          <div class="text-4xl mb-4">📚</div>
+          <h3 class="text-xl font-semibold mb-3">Stale Documentation</h3>
+          <p class="text-zinc-400">
+            Code examples break as APIs change. By the time docs are updated, agents have already learned the wrong patterns.
+          </p>
+        </div>
+        
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 card-glow transition">
+          <div class="text-4xl mb-4">🎲</div>
+          <h3 class="text-xl font-semibold mb-3">Hallucination Problem</h3>
+          <p class="text-zinc-400">
+            "AI never tells you when it doesn't know something. Instead of admitting uncertainty, it guesses based on patterns."
+          </p>
+          <p class="text-xs text-zinc-600 mt-2">— Vectara CEO, 2025</p>
+        </div>
+        
+        <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 card-glow transition">
+          <div class="text-4xl mb-4">🔍</div>
+          <h3 class="text-xl font-semibold mb-3">Best-Documented ≠ Best</h3>
+          <p class="text-zinc-400">
+            Agents pick services with the most examples, not the best performance. Documentation quality ≠ solution quality.
+          </p>
+        </div>
+      </div>
+
+      <!-- Research Stats -->
+      <div class="bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 rounded-2xl p-8">
+        <h3 class="text-xl font-semibold mb-6 text-red-400">📊 The Numbers Don't Lie</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div>
+            <div class="text-3xl font-bold text-red-400">$7.37B</div>
+            <div class="text-sm text-zinc-400">AI coding assistant market (2025)</div>
+            <div class="text-xs text-zinc-600 mt-1">Source: Quantumrun Foresight</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-red-400">42%</div>
+            <div class="text-sm text-zinc-400">GitHub Copilot market share</div>
+            <div class="text-xs text-zinc-600 mt-1">Source: CB Insights, Dec 2025</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-red-400">20M+</div>
+            <div class="text-sm text-zinc-400">GitHub Copilot users</div>
+            <div class="text-xs text-zinc-600 mt-1">Source: GitHub, July 2025</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-red-400">$1B+</div>
+            <div class="text-sm text-zinc-400">ARR for top 3 AI coding tools</div>
+            <div class="text-xs text-zinc-600 mt-1">Source: CB Insights, Dec 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="solution" class="py-24 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">The AgentDocs Solution</h2>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
+          Continuously verified code snippets, organized by use case, with real benchmarks.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div>
+          <div class="space-y-6">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-brand-500/20 rounded-xl flex items-center justify-center shrink-0">
+                <span class="text-brand-400 text-xl">✓</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Verified Working Code</h3>
+                <p class="text-zinc-400">Agent swarm continuously tests every snippet. "Last verified" timestamp on everything.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center shrink-0">
+                <span class="text-blue-400 text-xl">📊</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Real Benchmarks</h3>
+                <p class="text-zinc-400">Cost per API call, latency, quality scores. Compare 10 services for "transcription" side-by-side.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center shrink-0">
+                <span class="text-purple-400 text-xl">💰</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">x402 Micropayments</h3>
+                <p class="text-zinc-400">Agents pay $0.05-0.10 per verified snippet. No API keys, no signup. HTTP 402 native.</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center shrink-0">
+                <span class="text-orange-400 text-xl">🎯</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold mb-2">Use-Case Organized</h3>
+                <p class="text-zinc-400">"How do I transcribe audio?" → Here are 6 services with working code and benchmarks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Example -->
+        <div class="bg-zinc-900 rounded-2xl border border-zinc-800 overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 bg-zinc-800/50 border-b border-zinc-800">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="text-xs text-zinc-500 ml-2">API Response</span>
+          </div>
+          <pre class="p-4 text-sm overflow-x-auto"><code class="text-zinc-300"><span class="text-zinc-500">// GET /usecase/transcription</span>
+{
+  <span class="text-brand-400">"name"</span>: <span class="text-amber-400">"Audio/Video Transcription"</span>,
+  <span class="text-brand-400">"services"</span>: [
+    {
+      <span class="text-brand-400">"name"</span>: <span class="text-amber-400">"Deepgram"</span>,
+      <span class="text-brand-400">"avgLatencyMs"</span>: <span class="text-purple-400">850</span>,
+      <span class="text-brand-400">"avgCostUsd"</span>: <span class="text-purple-400">0.0043</span>,
+      <span class="text-brand-400">"avgQualityScore"</span>: <span class="text-purple-400">94</span>,
+      <span class="text-brand-400">"verifiedCount"</span>: <span class="text-purple-400">1</span>
+    },
+    {
+      <span class="text-brand-400">"name"</span>: <span class="text-amber-400">"OpenAI Whisper"</span>,
+      <span class="text-brand-400">"avgLatencyMs"</span>: <span class="text-purple-400">1200</span>,
+      <span class="text-brand-400">"avgCostUsd"</span>: <span class="text-purple-400">0.006</span>,
+      <span class="text-brand-400">"avgQualityScore"</span>: <span class="text-purple-400">92</span>,
+      <span class="text-brand-400">"verifiedCount"</span>: <span class="text-purple-400">1</span>
+    }
+  ]
+}</code></pre>
+        </div>
+      </div>
+
+      <!-- How x402 Works -->
+      <div id="how-it-works" class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
+        <h3 class="text-2xl font-semibold mb-6">How x402 Works</h3>
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">1️⃣</span>
+            </div>
+            <h4 class="font-medium mb-2">Agent Requests</h4>
+            <p class="text-sm text-zinc-500">Agent calls /verified/snippet/:id</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">2️⃣</span>
+            </div>
+            <h4 class="font-medium mb-2">402 Response</h4>
+            <p class="text-sm text-zinc-500">API returns payment requirements (USDC on Base)</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">3️⃣</span>
+            </div>
+            <h4 class="font-medium mb-2">Agent Pays</h4>
+            <p class="text-sm text-zinc-500">$0.05 USDC sent, tx hash in header</p>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span class="text-2xl">4️⃣</span>
+            </div>
+            <h4 class="font-medium mb-2">Code Delivered</h4>
+            <p class="text-sm text-zinc-500">Verified snippet + benchmarks returned</p>
+          </div>
+        </div>
+        <div class="mt-6 text-center">
+          <p class="text-sm text-zinc-500">
+            x402 protocol: <strong class="text-zinc-300">$42.96M+ volume</strong> • <strong class="text-zinc-300">35M+ transactions</strong> • <strong class="text-zinc-300">25,000+ developers</strong>
+            <span class="block mt-1 text-xs text-zinc-600">Source: x402.org, Feb 2026</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Market Section -->
+  <section id="market" class="py-24 border-t border-zinc-800/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">The Agent Economy is Here</h2>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
+          AI agents are becoming autonomous economic actors. They need infrastructure built for them.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 mb-16">
+        <div class="bg-gradient-to-br from-brand-500/10 to-blue-500/10 border border-brand-500/20 rounded-2xl p-8">
+          <h3 class="text-2xl font-semibold mb-6">📈 Market Growth</h3>
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <span class="text-zinc-400">AI Agent Market (2025)</span>
+              <span class="text-xl font-bold text-brand-400">$7.6B</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-zinc-400">AI Agent Market (2026)</span>
+              <span class="text-xl font-bold text-brand-400">$10.91B</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-zinc-400">AI Agent Market (2030)</span>
+              <span class="text-xl font-bold text-brand-400">$50.31B</span>
+            </div>
+            <div class="flex justify-between items-center border-t border-zinc-700 pt-4">
+              <span class="text-zinc-400">a16z Projection (Agent Economy)</span>
+              <span class="text-xl font-bold text-brand-400">$30T</span>
+            </div>
+          </div>
+          <p class="text-xs text-zinc-600 mt-4">Sources: Grand View Research, a16z (Oct 2025)</p>
+        </div>
+
+        <div class="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8">
+          <h3 class="text-2xl font-semibold mb-6">💼 Competitive Landscape</h3>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-medium">Context7 (Upstash)</span>
+                <span class="text-xs text-zinc-500 block">Version-specific docs</span>
+              </div>
+              <span class="text-yellow-400">No verification</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-medium">llms.txt</span>
+                <span class="text-xs text-zinc-500 block">Documentation format spec</span>
+              </div>
+              <span class="text-yellow-400">No benchmarks</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="font-medium">DevDocs</span>
+                <span class="text-xs text-zinc-500 block">Aggregated documentation</span>
+              </div>
+              <span class="text-yellow-400">No testing</span>
+            </div>
+            <div class="flex items-center justify-between border-t border-zinc-700 pt-4">
+              <div>
+                <span class="font-medium text-brand-400">AgentDocs</span>
+                <span class="text-xs text-zinc-400 block">Verified + Benchmarked + x402</span>
+              </div>
+              <span class="text-brand-400">✓ Full solution</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why Now -->
+      <div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8">
+        <h3 class="text-2xl font-semibold mb-6 text-center">Why Now?</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div class="text-4xl mb-4">🤖</div>
+            <h4 class="font-semibold mb-2">Agents Are Autonomous</h4>
+            <p class="text-sm text-zinc-400">Claude Code, Cursor, Devin — agents now write and execute code without human review.</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-4">💳</div>
+            <h4 class="font-semibold mb-2">Agents Can Pay</h4>
+            <p class="text-sm text-zinc-400">x402 enables machine-to-machine payments. No API keys, no humans in the loop.</p>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl mb-4">⚡</div>
+            <h4 class="font-semibold mb-2">Speed Matters</h4>
+            <p class="text-sm text-zinc-400">$0.05 for working code vs. 10 minutes debugging hallucinations. The math is obvious.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-24 border-t border-zinc-800/50">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        Ready to Build the<br>
+        <span class="gradient-text">Agent-Native Web?</span>
+      </h2>
+      <p class="text-xl text-zinc-400 mb-8">
+        We're looking for investors and early partners who believe in the autonomous agent economy.
+      </p>
+      
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <a href="https://agentdocs-api.holly-3f6.workers.dev" target="_blank"
+           class="bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition transform hover:scale-105">
+          Try the API
+        </a>
+        <a href="mailto:marlin@viewholly.com?subject=AgentDocs%20Investment%20Inquiry"
+           class="bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition">
+          Contact for Investment
+        </a>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="text-sm text-zinc-500">
+        <span>Built with</span>
+        <span class="text-zinc-400 font-medium mx-2">Cloudflare Workers</span>•
+        <span class="text-zinc-400 font-medium mx-2">Convex</span>•
+        <span class="text-zinc-400 font-medium mx-2">x402</span>•
+        <span class="text-zinc-400 font-medium mx-2">Hono</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-zinc-800/50 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-lg bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center">
+            <span class="text-white font-bold text-xs">AD</span>
+          </div>
+          <span class="font-semibold">AgentDocs</span>
+        </div>
+        <div class="flex items-center gap-6 text-sm text-zinc-500">
+          <a href="https://agentdocs-api.holly-3f6.workers.dev" class="hover:text-white transition">API</a>
+          <a href="https://x402.org" target="_blank" class="hover:text-white transition">x402 Protocol</a>
+          <a href="https://github.com/moltyfromclaw/agentdocs" target="_blank" class="hover:text-white transition">GitHub</a>
+        </div>
+        <div class="text-sm text-zinc-600">
+          © 2026 AgentDocs. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
