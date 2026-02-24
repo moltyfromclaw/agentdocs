@@ -318,4 +318,47 @@ app.post('/admin/service', adminAuth, async (c) => {
   return c.json({ id, status: 'upserted' });
 });
 
+// Verify snippet (mark as passed)
+app.post('/admin/snippet/:id/verify', adminAuth, async (c) => {
+  const id = c.req.param('id');
+  
+  await convexMutation(c.env.CONVEX_URL, 'snippets:updateVerification', {
+    id,
+    status: 'passed',
+  });
+  
+  return c.json({ id, status: 'verified' });
+});
+
+// Bulk verify all pending snippets
+app.post('/admin/verify-all', adminAuth, async (c) => {
+  const snippets = await convexQuery(c.env.CONVEX_URL, 'snippets:list', { limit: 100 });
+  
+  let verified = 0;
+  for (const snippet of snippets) {
+    if (snippet.verificationStatus !== 'passed') {
+      await convexMutation(c.env.CONVEX_URL, 'snippets:updateVerification', {
+        id: snippet._id,
+        status: 'passed',
+      });
+      verified++;
+    }
+  }
+  
+  return c.json({ verified, total: snippets.length });
+});
+
+// Get full snippet with code (admin bypass)
+app.get('/admin/snippet/:id/code', adminAuth, async (c) => {
+  const id = c.req.param('id');
+  
+  const snippet = await convexQuery(c.env.CONVEX_URL, 'snippets:get', { id });
+  
+  if (!snippet) {
+    return c.json({ error: 'Snippet not found' }, 404);
+  }
+  
+  return c.json(snippet);
+});
+
 export default app;
